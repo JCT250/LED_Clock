@@ -50,6 +50,11 @@ void setup()
   }
 
   rainbowCycle(20); // a little bit of eye candy on startup
+  for(int m=59; m>0; m--) {
+    strip.setPixelColor(m,0,0,0);
+    strip.show();
+    delay(20);
+  }
 }
 
 void loop() 
@@ -64,14 +69,13 @@ void loop()
     Serial.print(':');
     Serial.print(secs);
     Serial.println();
-    if(hours > 7 && hours <= 17 && display_off == 2)display_off = 0;
+    if(hours > 7 && hours <= 17   && display_off == 2)display_off = 0;
     if(hours > 17 && display_off == 0) display_off = 1;
     if(display_off == 1){
       for(int m=0; m<strip.numPixels(); m++) {
         strip.setPixelColor(m,0,0,0);
-        strip.show();
-        delay(20);
       }
+      strip.show();
       display_off = 2;
     }
     if(display_off == 0){
@@ -248,6 +252,8 @@ void get_time()
   if(secs != secs_old) update_time = 1;
 
 }
+
+
 
 
 
