@@ -21,7 +21,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 int c_r = 255;
 int c_g = 255;
 int c_b = 255;
-int face_intent = 8; // change this value to alter the brightness of the face. Whatever value is used must return a whole number when 256 is divided by it
+int face_intent = 4; // change this value to alter the brightness of the face. Whatever value is used must return a whole number when 256 is divided by it
 
 int hours = 1; 
 int mins = 0;
@@ -55,6 +55,7 @@ void setup()
     strip.show();
     delay(20);
   }
+  strip.setBrightness(128);
 }
 
 void loop() 
@@ -69,7 +70,7 @@ void loop()
     Serial.print(':');
     Serial.print(secs);
     Serial.println();
-    if(hours > 7 && hours <= 17   && display_off == 2)display_off = 0;
+    if(hours > 7 && hours <= 17 && display_off == 2)display_off = 0;
     if(hours > 17 && display_off == 0) display_off = 1;
     if(display_off == 1){
       for(int m=0; m<strip.numPixels(); m++) {
